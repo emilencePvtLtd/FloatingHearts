@@ -26,7 +26,7 @@ extension UIView {
         fadeAnimation.fromValue = 1.0
         fadeAnimation.toValue = 0.0
         fadeAnimation.duration = 2
-        fadeAnimation.beginTime = 1
+        fadeAnimation.timingFunction = CAMediaTimingFunction(name: .easeIn)
         fadeAnimation.fillMode = .forwards
         fadeAnimation.isRemovedOnCompletion = false
         heartIcon.layer.add(fadeAnimation, forKey: "fadeAnimation")
