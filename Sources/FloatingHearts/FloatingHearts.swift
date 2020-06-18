@@ -25,7 +25,8 @@ extension UIView {
         let fadeAnimation = CABasicAnimation(keyPath: "opacity")
         fadeAnimation.fromValue = 1.0
         fadeAnimation.toValue = 0.0
-        fadeAnimation.duration = 2
+        fadeAnimation.duration = 1
+        fadeAnimation.beginTime = 1
         fadeAnimation.fillMode = .forwards
         fadeAnimation.isRemovedOnCompletion = false
         heartIcon.layer.add(fadeAnimation, forKey: "fadeAnimation")
