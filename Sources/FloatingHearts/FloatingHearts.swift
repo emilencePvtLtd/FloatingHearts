@@ -41,7 +41,7 @@ extension UIView {
         heartIcon.layer.add(xAnimation, forKey: "xAnimation")
     }
     
-    func animateHeart(OnView view: UIView, withImage image: UIImage) {
+    public func animateHeart(OnView view: UIView, withImage image: UIImage) {
         let heartIcon = UIImageView(frame: CGRect(x: frame.origin.x, y: view.frame.maxY - 100, width: 40, height: 40))
         heartIcon.contentMode = .scaleAspectFill
         if #available(iOS 13.0, *) {
