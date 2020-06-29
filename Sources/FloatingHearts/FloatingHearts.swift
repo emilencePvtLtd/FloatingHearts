@@ -5,7 +5,7 @@ extension UIView {
         let yAnimation = CABasicAnimation(keyPath: "position.y")
         yAnimation.delegate = ViewRemover(for: heartIcon)
         yAnimation.fromValue = heartIcon.frame.origin.y
-        yAnimation.toValue = view.frame.midY - 100
+        yAnimation.toValue = heartIcon.frame.origin.y - view.frame.midY - 100
         yAnimation.duration = 2
         yAnimation.fillMode = .forwards
         yAnimation.isRemovedOnCompletion = false
@@ -43,7 +43,8 @@ extension UIView {
     }
     
     public func animateHeart(OnView view: UIView, withImage image: UIImage) {
-        let heartIcon = UIImageView(frame: CGRect(x: frame.origin.x, y: view.frame.maxY - 100, width: 40, height: 40))
+        let relativeFrame = self.convert(self.frame, to: view)
+        let heartIcon = UIImageView(frame: CGRect(x: frame.origin.x + 20, y: relativeFrame.origin.y - 50, width: 40, height: 40))
         heartIcon.contentMode = .scaleAspectFill
         if #available(iOS 13.0, *) {
             heartIcon.image = image.withTintColor(.random())
