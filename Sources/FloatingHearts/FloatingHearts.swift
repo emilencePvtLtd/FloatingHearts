@@ -86,19 +86,6 @@ class ViewRemover: NSObject, CAAnimationDelegate {
     }
 }
 
-class ViewRemover: NSObject, CAAnimationDelegate {
-    private weak var view: UIView?
-    
-    init(for view: UIView) {
-        super.init()
-        self.view = view
-    }
-    
-    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        view?.removeFromSuperview()
-    }
-}
-
 extension UIColor {
     static func random() -> UIColor {
         return UIColor(red: .random(), green: .random(), blue:  .random(), alpha: 1.0)
