@@ -42,7 +42,7 @@ extension UIView {
         heartIcon.layer.add(xAnimation, forKey: "xAnimation")
     }
     
-    public func animateHeart(OnView view: UIView, withImage image: UIImage) {
+    public func animateHeart(OnView view: UIView, withImage image: UIImage, belowSubviews views: [UIView?]? = nil) {
         let relativeFrame = self.convert(self.frame, to: view)
         let heartIcon = UIImageView(frame: CGRect(x: frame.origin.x + 20, y: relativeFrame.origin.y - 50, width: 40, height: 40))
         heartIcon.contentMode = .scaleAspectFill
@@ -55,6 +55,14 @@ extension UIView {
         view.addSubview(heartIcon)
         view.bringSubviewToFront(heartIcon)
         
+        if let views = views {
+            for subview in views {
+                if let nonNilSubview = subview {
+                    view.bringSubviewToFront(nonNilSubview)
+                }
+            }
+        }
+        
         let xSpace = view.frame.maxX - self.frame.maxX
         let randomNumber = CGFloat.random(in: -0.5...1)
         
@@ -62,6 +70,19 @@ extension UIView {
         addScaleAnimation(heartIcon)
         addFadeAnimation(heartIcon)
         addXAnimation(heartIcon, xSpace, randomNumber)
+    }
+}
+
+class ViewRemover: NSObject, CAAnimationDelegate {
+    private weak var view: UIView?
+    
+    init(for view: UIView) {
+        super.init()
+        self.view = view
+    }
+    
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        view?.removeFromSuperview()
     }
 }
 
